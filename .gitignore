@@ -1,6 +1,6 @@
 log/
 model/
-datasets/
+# datasets/
 dataset/
 *.txt
 *.pyc
