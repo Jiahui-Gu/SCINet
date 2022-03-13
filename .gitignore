@@ -1,6 +1,6 @@
 log/
 model/
-# datasets/
+datasets/
 dataset/
 *.txt
 *.pyc
@@ -18,3 +18,4 @@ pems_checkpoint/
 financial_checkpoints/
 ETT_checkpoints/
 exp/
+.DS_Store
