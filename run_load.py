@@ -4,7 +4,7 @@ import torch
 import numpy as np
 from torch.utils.tensorboard import SummaryWriter
 os.environ["KMP_DUPLICATE_LIB_OK"]="TRUE"
-from experiments.exp_ETTh import Exp_load
+from experiments.exp_load import Exp_load
 
 parser = argparse.ArgumentParser(description='SCINet on load dataset')
 
