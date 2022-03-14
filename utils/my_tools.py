@@ -1,6 +1,6 @@
 import pandas as pd
 
-def weather_process(path = 'SCINet/datasets/origin-data/weather/', file_name = '2017'):
+def weather_process(path = 'datasets/origin-data/weather/', file_name = '2017'):
     # 读取数据
     df = pd.read_csv(path+file_name+'.csv',skiprows=2)
 
@@ -12,7 +12,7 @@ def weather_process(path = 'SCINet/datasets/origin-data/weather/', file_name = '
     # 输出数据
     return df
 
-def load_process(path = 'SCINet/datasets/origin-data/load/', file_name = '2017'):
+def load_process(path = 'datasets/origin-data/load/', file_name = '2017'):
     # 读取数据
     df = pd.read_csv(path+file_name+'.csv')
 
@@ -35,9 +35,15 @@ def load_process(path = 'SCINet/datasets/origin-data/load/', file_name = '2017')
 
 if __name__ == '__main__':
     file_names = ['2017', '2018', '2019', '2020']
+    dfs = []
     for file_name in file_names:
         weather_df = weather_process(file_name=file_name)
         load_df = load_process(file_name=file_name)
         df = pd.concat([load_df,weather_df], axis=1)
+        dfs.append(df)
         df.columns = ['date', 'EL', 'HL', 'CL', 'T', 'WS', 'RH', 'DHI', 'DNI', 'DP', 'P'] # [日期, 电负荷, 热负荷, 冷负荷, 温度, 风速, 湿度, 太阳水平辐, 太阳垂直辐射, 露点, 大气压]
-        df.to_csv('SCINet/datasets/load-data/' + file_name + '.csv', index=None)
+        df.to_csv('datasets/load-data/' + file_name + '.csv', index=None)
+    small_df = dfs[0][0:31*24]
+    small_df.to_csv('datasets/load-data/loadS.csv', index=None)
+    total_df = pd.concat(dfs)
+    total_df.to_csv('datasets/load-data/loadT.csv', index=None)
